@@ -24,7 +24,7 @@ SECRET_KEY = 'django-insecure-l$8i=*16-wmcdnuh#@1mnx9$4-ka%%iem(=yf$@(eqdtr#8#)z
 # SECURITY WARNING: don't run with debug turned on in production!
 DEBUG = True
 
-ALLOWED_HOSTS = []
+ALLOWED_HOSTS = ['techtouhid.herokuapp.com', '127.0.0.1:8000', 'localhost']
 
 # Application definition
 
@@ -42,6 +42,7 @@ INSTALLED_APPS = [
 
 MIDDLEWARE = [
     'django.middleware.security.SecurityMiddleware',
+    'whitenoise.middleware.WhiteNoiseMiddleware',
     'django.contrib.sessions.middleware.SessionMiddleware',
     'corsheaders.middleware.CorsMiddleware',  # added for corsheaders app
     'django.middleware.common.CommonMiddleware',
@@ -82,6 +83,7 @@ DATABASES = {
         'NAME': BASE_DIR / 'db.sqlite3',
     }
 }
+
 
 # Password validation
 # https://docs.djangoproject.com/en/3.2/ref/settings/#auth-password-validators
@@ -129,6 +131,8 @@ STATICFILES_DIRS = [
 ]
 MEDIA_ROOT = os.path.join(BASE_DIR, 'static/images')
 
+STATIC_ROOT = os.path.join(BASE_DIR, 'staticfiles')
+
 CORS_ALLOWED_ORIGINS = [
     'http://localhost:3000'
 ]
@@ -137,3 +141,24 @@ CORS_ALLOWED_ORIGINS = [
 # https://docs.djangoproject.com/en/3.2/ref/settings/#default-auto-field
 
 DEFAULT_AUTO_FIELD = 'django.db.models.BigAutoField'
+
+# heroku settings
+import django_heroku
+django_heroku.settings(locals())
+
+import django_heroku
+import dotenv
+import dj_database_url
+
+dotenv_file = os.path.join(BASE_DIR, ".env")
+if os.path.isfile(dotenv_file):
+    dotenv.load_dotenv(dotenv_file)
+
+DATABASES = {}
+
+DATABASES['default'] = dj_database_url.config(conn_max_age=600)
+
+options = DATABASES['default'].get('OPTIONS', {})
+options.pop('sslmode', None)
+
+STATICFILES_STORAGE = 'whitenoise.storage.CompressedManifestStaticFilesStorage'

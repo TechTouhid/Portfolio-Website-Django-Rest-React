@@ -2,13 +2,8 @@ import PortfolioList from "../portfolioList/PortfolioList";
 import "./portfolio.scss";
 import { useState, useEffect } from "react";
 import axios from "axios";
-
-import // featuredPortfolio,
-// webPortfolio,
-// mobilePortfolio,
-// designPortfolio,
-// contentPortfolio,
-"../../data";
+axios.defaults.xsrfCookieName = 'csrftoken'
+axios.defaults.xsrfHeaderName = 'X-CSRFToken'
 
 export default function Portfolio() {
   const [selected, setSelected] = useState("featured");
