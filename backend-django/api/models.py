@@ -16,7 +16,19 @@ class PersonalInfo(models.Model):
         return self.fullname()
 
 
-    # def image_tag(self):
-    #     return mark_safe('<img src="/directory/%s" width="150" height="150" />' % (self.image))
-    #
-    # image_tag.short_description = 'Image'
+class ProtfolioType(models.Model):
+    type = models.CharField(max_length=100)
+
+    def __str__(self):
+        return self.type
+
+
+class Portfolio(models.Model):
+    title = models.CharField(max_length=200)
+    image = models.ImageField(null=True, blank=True)
+    img_caption = models.CharField(max_length=100)
+    portfolio_type = models.ForeignKey(ProtfolioType, on_delete=models.CASCADE)
+    url = models.URLField()
+
+    def __str__(self):
+        return f"{self.title}"
