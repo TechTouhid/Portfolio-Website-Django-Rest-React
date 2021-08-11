@@ -13,7 +13,7 @@ export default function Portfolio() {
   const [portfolioData, setPortfolioData] = useState([]);
 
   const ai = axios.create({
-    baseURL: "http://127.0.0.1:8000",
+    baseURL: "https://techtouhid.herokuapp.com",
   });
 
   useEffect(() => {
