@@ -67,12 +67,6 @@ export default function Work() {
           </div>
         ))}
       </div>
-      {/* <img
-        className="arrow left"
-        src="images/arrow.png"
-        alt=""
-        onClick={() => handelClick("left")}
-      /> */}
       <ArrowForwardIosIcon
         className="arrow left"
         onClick={() => handelClick("right")}
@@ -81,12 +75,6 @@ export default function Work() {
         className="arrow right"
         onClick={() => handelClick("left")}
       />
-      {/* <img
-        className="arrow right"
-        src="images/arrow.png"
-        alt=""
-        onClick={() => handelClick("right")}
-      /> */}
     </div>
   );
 }
