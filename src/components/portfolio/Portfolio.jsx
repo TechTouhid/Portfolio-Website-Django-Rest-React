@@ -2,6 +2,8 @@ import PortfolioList from "../portfolioList/PortfolioList";
 import "./portfolio.scss";
 import { useState, useEffect } from "react";
 import axios from "axios";
+
+// this 2 line need for deployment
 axios.defaults.xsrfCookieName = 'csrftoken'
 axios.defaults.xsrfHeaderName = 'X-CSRFToken'
 
