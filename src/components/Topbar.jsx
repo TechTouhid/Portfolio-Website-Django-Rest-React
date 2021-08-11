@@ -8,12 +8,13 @@ axios.defaults.xsrfHeaderName = 'X-CSRFToken'
 
 export default function Topbar(props) {
   const [personalInfo, setPersonalInfo] = useState([]);
-  const ai = axios.create({
-    baseURL: "https://techtouhid.herokuapp.com",
-  });
+  // const ai = axios.create({
+  //   // baseURL: "https://techtouhid.herokuapp.com",
+  //   baseURL: "http://127.0.0.1:8000",
+  // });
 
   useEffect(() => {
-    ai.get("/api/personalinfo").then((response) => {
+    axios.get("/api/personalinfo").then((response) => {
       setPersonalInfo(response.data[0]);
     });
   }, []); // eslint-disable-line react-hooks/exhaustive-deps

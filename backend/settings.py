@@ -12,9 +12,14 @@ BASE_DIR = Path(__file__).resolve().parent.parent
 # See https://docs.djangoproject.com/en/3.2/howto/deployment/checklist/
 
 # SECURITY WARNING: keep the secret key used in production secret!
-SECRET_KEY = os.environ['SECRET_KEY']
-# SECRET_KEY = 'django-insecure-l$8i=*16-wmcdnuh#@1mnx9$4-ka%%iem(=yf$@(eqdtr#8#)z'
+SECRET_KEY = 'django-insecure-l$8i=*16-wmcdnuh#@1mnx9$4-ka%%iem(=yf$@(eqdtr#8#)z'
 
+# SECURITY WARNING: don't run with debug turned on in production!
+DEBUG = False
+
+# ALLOWED_HOSTS = ['*']
+ALLOWED_HOSTS = ['techtouhid.herokuapp.com', '127.0.0.1:8000', 'localhost']
+# Application definition
 
 INSTALLED_APPS = [
     'django.contrib.admin',
@@ -61,6 +66,16 @@ TEMPLATES = [
 ]
 
 WSGI_APPLICATION = 'backend.wsgi.application'
+
+# Database
+# https://docs.djangoproject.com/en/3.2/ref/settings/#databases
+
+# DATABASES = {
+#     'default': {
+#         'ENGINE': 'django.db.backends.sqlite3',
+#         'NAME': BASE_DIR / 'db.sqlite3',
+#     }
+# }
 
 # Password validation
 # https://docs.djangoproject.com/en/3.2/ref/settings/#auth-password-validators
@@ -111,24 +126,6 @@ MEDIA_ROOT = os.path.join(BASE_DIR, 'static/images')
 
 STATIC_ROOT = os.path.join(BASE_DIR, 'staticfiles')
 
-##### testing or local settings
-# Database
-# DATABASES = {
-#     'default': {
-#         'ENGINE': 'django.db.backends.sqlite3',
-#         'NAME': BASE_DIR / 'db.sqlite3',
-#     }
-# }
-
-##### productions section
-
-# SECURITY WARNING: don't run with debug turned on in production!
-DEBUG = False
-
-# ALLOWED_HOSTS = ['*']
-ALLOWED_HOSTS = ['techtouhid.herokuapp.com', '127.0.0.1:8000', 'localhost']
-# Application definition
-
 # Option 1
 CORS_ORIGIN_WHITELIST = [
     'https://localhost:3000',
@@ -145,9 +142,9 @@ DEFAULT_AUTO_FIELD = 'django.db.models.BigAutoField'
 # heroku settings
 django_heroku.settings(locals())
 
-dotenv_file = os.path.join(BASE_DIR, ".env")
-if os.path.isfile(dotenv_file):
-    dotenv.load_dotenv(dotenv_file)
+# dotenv_file = os.path.join(BASE_DIR, ".env")
+# if os.path.isfile(dotenv_file):
+#     dotenv.load_dotenv(dotenv_file)
 
 DATABASES = {}
 

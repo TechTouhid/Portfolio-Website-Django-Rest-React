@@ -12,13 +12,14 @@ export default function Portfolio() {
   const [data, setData] = useState([]);
   const [portfolioData, setPortfolioData] = useState([]);
 
-  const ai = axios.create({
-    baseURL: "https://techtouhid.herokuapp.com",
-  });
+  // const ai = axios.create({
+  //   // baseURL: "https://techtouhid.herokuapp.com",
+  //   baseURL: "http://127.0.0.1:8000",
+  // });
 
   useEffect(() => {
     async function fetchPortfolio() {
-      const { data } = await ai.get("/api/portfolio/list");
+      const { data } = await axios.get("/api/portfolio/list");
       setPortfolioData(data);
     }
     fetchPortfolio();
