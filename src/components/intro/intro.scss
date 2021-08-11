@@ -1,7 +1,8 @@
 @import "../../global.scss";
 
 .intro {
-  background-color: white;
+  background-color: $mainBGColor;
+  background-image: $background-image;
   display: flex;
   @include mobile {
     flex-direction: column;
@@ -75,6 +76,26 @@
           100% {
             opacity: 0;
           }
+        }
+      }
+      h4 {
+        margin-top: 10px;
+        font-size: 18px;
+        button {
+          color: white;
+          padding: 7px;
+          background-color: $mainColor;
+          cursor: pointer;
+          border-radius: 7px;
+          font-weight: 500;
+          border: none;
+
+          &:hover {
+            background-color: #1597bb;
+          }
+        }
+        button:last-child {
+          margin-left: 10px;
         }
       }
     }

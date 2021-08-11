@@ -1,5 +1,6 @@
 import "./work.scss";
 import { useState } from "react";
+import ArrowForwardIosIcon from "@material-ui/icons/ArrowForwardIos";
 
 export default function Work() {
   const [currentSlide, setCurrentSlide] = useState(0);
@@ -41,6 +42,7 @@ export default function Work() {
   };
   return (
     <div className="works" id="works">
+      <h1>My Service</h1>
       <div
         className="slider"
         style={{ transform: `translateX(-${currentSlide * 100}vw)` }}
@@ -65,18 +67,26 @@ export default function Work() {
           </div>
         ))}
       </div>
-      <img
+      {/* <img
         className="arrow left"
         src="images/arrow.png"
         alt=""
         onClick={() => handelClick("left")}
+      /> */}
+      <ArrowForwardIosIcon
+        className="arrow left"
+        onClick={() => handelClick("right")}
       />
-      <img
+      <ArrowForwardIosIcon
+        className="arrow right"
+        onClick={() => handelClick("left")}
+      />
+      {/* <img
         className="arrow right"
         src="images/arrow.png"
         alt=""
         onClick={() => handelClick("right")}
-      />
+      /> */}
     </div>
   );
 }

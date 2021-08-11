@@ -10,7 +10,7 @@ export default function Intro() {
       showCursor: true,
       backDelay: 1500,
       backSpeed: 60,
-      strings: ["Developer", "Designer", "Programmer"],
+      strings: ["Developer", "Programmer", "Youtuber"],
     });
   }, []);
   return (
@@ -27,6 +27,22 @@ export default function Intro() {
           <h3>
             Freelance <span ref={textRef}></span>
           </h3>
+          <h4>
+            {/* <span>HIRE ME</span>
+            <span>DOWNLOAD CV</span> */}
+            <button type="submit">HIRE ME</button>
+            <button
+              onClick={() =>
+                window.open(
+                  "https://www.businessfirstonline.co.uk/wp-content/uploads/2020/05/What-Are-the-Major-Types-of-Computer-Software-Used-in-Business.jpg",
+                  "_blank"
+                )
+              }
+              type="submit"
+            >
+              DOWNLOAD CV
+            </button>
+          </h4>
         </div>
         <a href="#portfolio">
           <img src="images/down.png" alt="" />

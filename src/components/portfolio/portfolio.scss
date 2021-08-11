@@ -1,6 +1,7 @@
 @import "../../global.scss";
 .portfolio {
-  background-color: white;
+  background-color: $mainBGColor;
+  background-image: $background-image;
   display: flex;
   flex-direction: column;
   align-items: center;
