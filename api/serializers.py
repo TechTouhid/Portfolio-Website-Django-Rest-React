@@ -5,7 +5,7 @@ from .models import PersonalInfo, Portfolio
 class PersonalInfoSerializer(serializers.ModelSerializer):
     class Meta:
         model = PersonalInfo
-        fields = ['id', 'first_name', 'last_name', 'phone', 'email', 'image']
+        fields = ['id', 'first_name', 'last_name', 'phone', 'email', 'image', 'resume']
 
 
 class PortfolioSerializer(serializers.ModelSerializer):

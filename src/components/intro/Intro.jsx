@@ -1,23 +1,33 @@
 import "./intro.scss";
 import { init } from "ityped";
-import { useEffect, useRef } from "react";
+import { useEffect, useRef, useState } from "react";
+import axios from "axios";
+axios.defaults.xsrfCookieName = "csrftoken";
+axios.defaults.xsrfHeaderName = "X-CSRFToken";
 
 export default function Intro() {
   const textRef = useRef();
+  const [personalInfo, setPersonalInfo] = useState([]);
 
+  useEffect(() => {
+    axios.get("/api/personalinfo").then((response) => {
+      setPersonalInfo(response.data[0]);
+    });
+  }, []); // eslint-disable-line react-hooks/exhaustive-deps
   useEffect(() => {
     init(textRef.current, {
       showCursor: true,
       backDelay: 1500,
       backSpeed: 60,
-      strings: ["Developer", "Programmer", "Youtuber"],
+      strings: ["Developer", "Programmer", "Content Creator"],
     });
   }, []);
+
   return (
     <div className="intro" id="intro">
       <div className="left">
         <div className="imageContainer">
-          <img src="images/man.png" alt="" />
+          <img src={personalInfo.image} alt="" />
         </div>
       </div>
       <div className="right">
@@ -28,16 +38,16 @@ export default function Intro() {
             Freelance <span ref={textRef}></span>
           </h3>
           <h4>
-            {/* <span>HIRE ME</span>
-            <span>DOWNLOAD CV</span> */}
-            <button type="submit">HIRE ME</button>
             <button
-              onClick={() =>
-                window.open(
-                  "https://www.businessfirstonline.co.uk/wp-content/uploads/2020/05/What-Are-the-Major-Types-of-Computer-Software-Used-in-Business.jpg",
-                  "_blank"
-                )
-              }
+              type="submit"
+              onClick={() => {
+                alert("Please Email to: touhidurrahman1997@gmail.com");
+              }}
+            >
+              HIRE ME
+            </button>
+            <button
+              onClick={() => window.open(personalInfo.resume, "_blank")}
               type="submit"
             >
               DOWNLOAD CV

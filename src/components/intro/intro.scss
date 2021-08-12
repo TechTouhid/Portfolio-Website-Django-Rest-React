@@ -17,6 +17,7 @@
       height: 43.75rem;
       background-color: crimson;
       border-radius: 50%;
+      border: 6px solid #ddd;
       display: flex;
       align-items: flex-end;
       justify-content: center;
@@ -29,6 +30,9 @@
         @include mobile {
           height: 50%;
         }
+      }
+      &:hover {
+        transform: scale(1.01);
       }
     }
   }

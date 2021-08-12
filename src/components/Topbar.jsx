@@ -3,8 +3,8 @@ import PersonIcon from "@material-ui/icons/Person";
 import MailIcon from "@material-ui/icons/Mail";
 import axios from "axios";
 import React, { useState, useEffect } from "react";
-axios.defaults.xsrfCookieName = 'csrftoken'
-axios.defaults.xsrfHeaderName = 'X-CSRFToken'
+axios.defaults.xsrfCookieName = "csrftoken";
+axios.defaults.xsrfHeaderName = "X-CSRFToken";
 
 export default function Topbar(props) {
   const [personalInfo, setPersonalInfo] = useState([]);

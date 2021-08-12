@@ -4,7 +4,7 @@ from .models import PersonalInfo, Portfolio, ProtfolioType
 
 # Register your models here.
 class PersonalInfoAdmin(admin.ModelAdmin):
-    list_display = ('first_name', 'last_name', 'email', 'phone')
+    list_display = ('first_name', 'last_name', 'email', 'phone', 'resume')
 
 
 class PortfolioAdmin(admin.ModelAdmin):
