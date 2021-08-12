@@ -33,3 +33,14 @@ class Portfolio(models.Model):
 
     def __str__(self):
         return f"{self.title}"
+    
+class Work(models.Model):
+    title = models.CharField(max_length=100)
+    description = models.CharField(max_length=100)
+    image_banner = models.ImageField(null=True, blank=True)
+    image_icon = models.ImageField(null=True, blank=True)
+    url = models.URLField(null=True, blank=True)
+    
+    def __str__(self):
+        return self.title
+    

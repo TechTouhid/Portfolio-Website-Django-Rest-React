@@ -1,44 +1,32 @@
 import "./work.scss";
-import { useState } from "react";
+import { useState, useEffect } from "react";
 import ArrowForwardIosIcon from "@material-ui/icons/ArrowForwardIos";
+import axios from "axios";
+
+// this 2 line need for deployment
+axios.defaults.xsrfCookieName = "csrftoken";
+axios.defaults.xsrfHeaderName = "X-CSRFToken";
 
 export default function Work() {
   const [currentSlide, setCurrentSlide] = useState(0);
+  const [workData, setWorkData] = useState([]);
 
-  const data = [
-    {
-      id: "1",
-      icon: "./assets/mobile.png",
-      title: "Web Design",
-      desc: "Lorem Ipsum is simply dummy text of the printing and typesetting industry. ",
-      img: "https://99designs-blog.imgix.net/blog/wp-content/uploads/2018/10/attachment_100040756-e1538485934255.jpeg?auto=format&q=60&fit=max&w=930",
-    },
-    {
-      id: "2",
-      icon: "./assets/globe.png",
-      title: "Mobile Application",
-      desc: "Lorem Ipsum is simply dummy text of the printing and typesetting industry.",
-      img: "https://i.pinimg.com/originals/e9/c9/2f/e9c92f7869d682a6fa5a97fb8a298f30.jpg",
-    },
-    {
-      id: "3",
-      icon: "./assets/writing.png",
-      title: "Branding",
-      desc: "Lorem Ipsum is simply dummy text of the printing and typesetting industry.",
-      img: "https://i.pinimg.com/originals/a9/f6/94/a9f69465d972a004ad581f245d6ad581.jpg",
-    },
-    {
-      id: "4",
-      icon: "./assets/writing.png",
-      title: "Programming",
-      desc: "Lorem Ipsum is simply dummy text of the printing and typesetting industry.",
-      img: "https://i.pinimg.com/originals/a9/f6/94/a9f69465d972a004ad581f245d6ad581.jpg",
-    },
-  ];
+  useEffect(() => {
+    async function fetchWork() {
+      const { data } = await axios.get("/api/work/list");
+      setWorkData(data);
+    }
+    fetchWork();
+  }, []); // eslint-disable-line react-hooks/exhaustive-deps
+
   const handelClick = (way) => {
     way === "left"
-      ? setCurrentSlide(currentSlide > 0 ? currentSlide - 1 : data.length - 1)
-      : setCurrentSlide(currentSlide < data.length - 1 ? currentSlide + 1 : 0);
+      ? setCurrentSlide(
+          currentSlide > 0 ? currentSlide - 1 : workData.length - 1
+        )
+      : setCurrentSlide(
+          currentSlide < workData.length - 1 ? currentSlide + 1 : 0
+        );
   };
   return (
     <div className="works" id="works">
@@ -47,21 +35,23 @@ export default function Work() {
         className="slider"
         style={{ transform: `translateX(-${currentSlide * 100}vw)` }}
       >
-        {data.map((d) => (
+        {workData.map((d) => (
           <div className="container">
             <div className="item">
               <div className="left">
                 <div className="leftContainer">
                   <div className="imgContainer">
-                    <img src={d.icon} alt="" />
+                    <img src={d.image_icon} alt="" />
                   </div>
                   <h2>{d.title}</h2>
-                  <p>{d.desc}</p>
-                  <span>Projects</span>
+                  <p>{d.description}</p>
+                  <span onClick={() => window.open(d.url, "_blank")}>
+                    Projects
+                  </span>
                 </div>
               </div>
               <div className="right">
-                <img src={d.img} alt="" />
+                <img src={d.image_banner} alt="" />
               </div>
             </div>
           </div>

@@ -4,9 +4,9 @@ from django.http import HttpResponse, HttpResponseNotFound
 from django.shortcuts import render, get_object_or_404
 from django.views import View
 from rest_framework import generics
-from .serializers import PersonalInfoSerializer, PortfolioSerializer
+from .serializers import PersonalInfoSerializer, PortfolioSerializer, WorkSerializer
 
-from .models import PersonalInfo, Portfolio
+from .models import PersonalInfo, Portfolio, Work
 
 
 class PersonalInfoView(generics.ListAPIView):
@@ -21,6 +21,12 @@ class PortfolioView(generics.ListAPIView):
 
     def get_queryset(self):
         return Portfolio.objects.all()
+    
+class WorkView(generics.ListAPIView):
+    serializer_class = WorkSerializer
+
+    def get_queryset(self):
+        return Work.objects.all()
 
 
 # Add this CBV

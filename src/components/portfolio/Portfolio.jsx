@@ -4,8 +4,8 @@ import { useState, useEffect } from "react";
 import axios from "axios";
 
 // this 2 line need for deployment
-axios.defaults.xsrfCookieName = 'csrftoken'
-axios.defaults.xsrfHeaderName = 'X-CSRFToken'
+axios.defaults.xsrfCookieName = "csrftoken";
+axios.defaults.xsrfHeaderName = "X-CSRFToken";
 
 export default function Portfolio() {
   const [selected, setSelected] = useState("featured");
@@ -107,8 +107,12 @@ export default function Portfolio() {
       <div className="container">
         {data.map((d) => (
           <div className="item">
-            <img src={d.image} alt="" />
-            <h3>{d.title}</h3>
+            <img
+              src={d.image}
+              alt=""
+              onClick={() => window.open(d.url, "_blank")}
+            />
+            <h3 onClick={() => window.open(d.url, "_blank")}>{d.title}</h3>
           </div>
         ))}
       </div>
